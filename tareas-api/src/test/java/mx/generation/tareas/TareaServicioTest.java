@@ -2,6 +2,7 @@ package mx.generation.tareas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -37,6 +38,11 @@ class TareaServicioTest {
     }
 
     // TODO: falta probar que completar(999) lanza TareaNoEncontradaException
+
+    @Test
+    void completarInexistenteLanzaExcepcion() {
+        assertThrows(TareaNoEncontradaException.class, () -> servicio.completar(999));
+    }
 
     @Test
     void listarPendientesExcluyeCompletadas() {
