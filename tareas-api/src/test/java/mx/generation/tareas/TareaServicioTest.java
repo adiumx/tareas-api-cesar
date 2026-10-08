@@ -106,4 +106,17 @@ class TareaServicioTest {
     }
 
     // TODO: no hay pruebas de eliminar(int)
+
+    @Test
+    void eliminarExistenteDevuelveTrueYDesaparece() {
+        Tarea t = servicio.crear("Tarea temporal", "", Prioridad.BAJA, null);
+        int id = t.getId();
+        assertTrue(servicio.eliminar(id));
+        assertFalse(servicio.listarPendientes().contains(t));
+    }
+
+    @Test
+    void eliminarInexistenteDevuelveFalse() {
+        assertFalse(servicio.eliminar(999));
+    }
 }
